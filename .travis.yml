@@ -27,7 +27,7 @@ install:
 
 script:
 
- - nosetests --with-cov --cov langevin_dynamics --cov-config .coveragerc --logging-level=INFO
+ - nosetests --with-cov --cover-html langevin_dynamics --cov-config .coveragerc --logging-level=INFO
 
 # Calculate coverage
 after_success:
