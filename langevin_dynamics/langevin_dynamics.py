@@ -89,10 +89,10 @@ for colom in open('output.d').readlines():
     i=i+1
     
 #plt.figure(1)
-plt.plot(post_t, post_x, '-')
+#plt.plot(post_t, post_x, '-')
 #plt.plot(post_t, post_v, 'o')
-plt.xlabel('time')
-plt.ylabel('position')
+#plt.xlabel('time')
+#plt.ylabel('position')
 #plt.savefig('particle_position.pdf')
 #plt.figure(2)
 #plt.plot(post_t, post_v, '-')
