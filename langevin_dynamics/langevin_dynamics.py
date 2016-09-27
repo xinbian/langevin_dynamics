@@ -109,7 +109,7 @@ class Test_langevin(unittest.TestCase):
         self.assertEquals(cacl_nstep(1.0, 0.1), 10)
     # test the mean of random number is reasonable or not
      def test_random_mean(self):
-        self.assertTrue(np.mean(eta)<1)
+        self.assertTrue(np.mean(cacl_random(0,1,1000))<1)
     # test whether the  particle is confined within the potential well which should be by design
      #def test_particle_confiment(self):
         #self.assertTrue(np.abs(x-10)<10)
