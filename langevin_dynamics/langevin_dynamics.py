@@ -40,13 +40,24 @@ deltat=float(deltat)
 totalt=float(totalt)
 m=float(m)
 time=0
-nstep=int(totalt/deltat)
+
+##def nstep
+def cacl_nstep(totalt, deltat):
+    return int(totalt/deltat)
+    
+nstep=cacl_nstep(totalt, deltat)
 
 #generate random number
 mu, sigma=0, 2*np.sqrt(dampcoeff)*temp
-eta=np.random.normal(mu,sigma,nstep)
+#eta=np.random.normal(mu,sigma,nstep)
 #count, bins, ignored = plt.hist(eta, 30, normed=True)
 
+def cacl_random(mu, sigma, nstep):
+    x=np.random.normal(mu,sigma,nstep) 
+    return x
+
+eta=cacl_random(mu, sigma, nstep)
+    
 #read potential file
 #f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/output.d','w')
 #main loop
@@ -76,11 +87,12 @@ for colom in open('output.d').readlines():
     post_x[i]=float(colom.split()[2])
     post_v[i]=float(colom.split()[3])
     i=i+1
+    
 #plt.figure(1)
-#plt.plot(post_t, post_x, '-')
+plt.plot(post_t, post_x, '-')
 #plt.plot(post_t, post_v, 'o')
-#plt.xlabel('time')
-#plt.ylabel('position')
+plt.xlabel('time')
+plt.ylabel('position')
 #plt.savefig('particle_position.pdf')
 #plt.figure(2)
 #plt.plot(post_t, post_v, '-')
@@ -88,3 +100,21 @@ for colom in open('output.d').readlines():
 #plt.ylabel('velocity')
 #plt.savefig('particle_velocity.pdf')
 #plt.show() 
+
+
+####unit test
+class Test_langevin(unittest.TestCase):
+     # test nstep cal function
+     def test_langevin(self):
+        self.assertEquals(cacl_nstep(1.0, 0.1), 10)
+    # test the mean of random number is reasonable or not
+     def test_random_mean(self):
+        self.assertTrue(np.mean(eta)<1)
+    # test whether the  particle is confined within the potential well which should be by design
+     def test_particle_confiment(self):
+        self.assertTrue(np.abs(x-10)<10)
+     
+         
+        
+tests =  unittest.TestLoader().loadTestsFromTestCase(Test_langevin)
+unittest.TextTestRunner().run(tests) 
