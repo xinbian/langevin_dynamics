@@ -32,6 +32,7 @@ Features
 * Euler method is used.
 * Linear interpolation is used to get the potential in a specific position, since the potential is given be a discrete table/file.
 * The figures of position and velocity are added in the directory of the langevin_dynamics 
+* My code coverage is 100%, but the total code coverage is not 100% because of a file cli.py, gengerated by cookiecutter. I need to keep this file to pass the test.
 Credits
 ---------
 
