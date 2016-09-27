@@ -2,13 +2,28 @@ import unittest
 import numpy as np
 import matplotlib.pyplot as plt
 
-f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/potential.d','w')
-for i in range(1, 201, 1):
-  f.write("%10s  %10s  %10s\n" % (i, np.sin(i), np.cos(i)))
+x=0.0
+xrange=2000
+#f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/potential.d','w')
+#write the potential file
+f = open('potential.d','w')
+for i in range(1, xrange+1, 1):
+  f.write("%s %10s  %10s  %10s\n" % (i, x, (2.0-2.0*(x-10)**2)**2, -16.0*(x-10)+16.0*(x-10)**3))
+  x=x+0.01
 f.close()
+index=np.arange(xrange,dtype=np.float64)
+xpotential=np.arange(xrange,dtype=np.float64)
+fpotential=np.arange(xrange,dtype=np.float64)
+i=0
+for colom in open('potential.d').readlines():
+   # index[i]=float(colom.split()[1]) 
+    xpotential[i]=float(colom.split()[1])
+    fpotential[i]=float(colom.split()[3])
+    i=i+1
 
-#read inout parameter
-with open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/input.d', 'r') as f:
+#read input parameter
+#with open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/input.d', 'r') as f:
+with open('input.d', 'r') as f:
        x=f.readline()
        v=f.readline()
        temp=f.readline()
@@ -32,13 +47,36 @@ mu, sigma=0, 2*np.sqrt(dampcoeff)*temp
 eta=np.random.normal(mu,sigma,nstep)
 #count, bins, ignored = plt.hist(eta, 30, normed=True)
 
-
-f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/output.d','w')
+#read potential file
+#f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/output.d','w')
+f = open('output.d','w')
 for i in range(1, nstep+1):  
-    a=(-dampcoeff*v+eta[i-1]-np.cos(x))/m
+    finter=np.interp(x,xpotential,fpotential)
+    a=(-dampcoeff*v+eta[i-1]-finter)/m
     v=v+deltat*a
     x=x+v*deltat
     time=time+deltat
-    f.write("%3s %5s %10s %10s\n" % (i, time, x, v))
+    f.write("%4s\t%5s\t%10s\t%10s\n" % (i, time, x, v))
     i=i+1
 f.close()
+
+#xvals = np.linspace(0, 2*np.pi, 50)
+#yinterp=np.interp(xvals,xpotential,fpotential)
+
+#turn off random force 
+#make the random force very large
+
+post_t=np.arange(nstep,dtype=np.float64)
+post_x=np.arange(nstep,dtype=np.float64)
+post_v=np.arange(nstep,dtype=np.float64)
+i=0
+for colom in open('output.d').readlines():
+   # index[i]=float(colom.split()[1]) 
+    post_t[i]=float(colom.split()[1])
+    post_x[i]=float(colom.split()[2])
+    post_v[i]=float(colom.split()[3])
+    i=i+1
+plt.plot(post_t, post_x, '-')
+#plt.plot(post_t, post_v, 'o')
+plt.savefig('particle_position.pdf')
+plt.show() 
