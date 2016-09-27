@@ -28,8 +28,9 @@ a langevin dynamics project
 Features
 --------
 
-* TODO
-** add something to test
+* The intitial position is x=10, where the potential is lowest. The potential at rim (x=0 and x=20) is designed to be very large so that the particle should not get out of the range 0<x<20 (unless the termperature is very very high).
+* Euler method is used.
+* Linear interpolation is used to get the potential in a specific position, since the potential is given be a discrete table/file.
 Credits
 ---------
 

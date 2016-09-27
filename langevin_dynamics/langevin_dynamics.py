@@ -31,7 +31,7 @@ with open('input.d', 'r') as f:
        deltat=f.readline()
        totalt=f.readline()
        m=f.readline()
-       
+# v velocity, x position, temp, temperarure, dampcoeff damp coeffcient, m mass      
 x=float(x)
 v=float(v)
 temp=float(temp)
@@ -49,6 +49,7 @@ eta=np.random.normal(mu,sigma,nstep)
 
 #read potential file
 #f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/output.d','w')
+#main loop
 f = open('output.d','w')
 for i in range(1, nstep+1):  
     finter=np.interp(x,xpotential,fpotential)
@@ -63,8 +64,7 @@ f.close()
 #xvals = np.linspace(0, 2*np.pi, 50)
 #yinterp=np.interp(xvals,xpotential,fpotential)
 
-#turn off random force 
-#make the random force very large
+#post processing 
 
 post_t=np.arange(nstep,dtype=np.float64)
 post_x=np.arange(nstep,dtype=np.float64)
@@ -76,7 +76,15 @@ for colom in open('output.d').readlines():
     post_x[i]=float(colom.split()[2])
     post_v[i]=float(colom.split()[3])
     i=i+1
+plt.figure(1)
 plt.plot(post_t, post_x, '-')
 #plt.plot(post_t, post_v, 'o')
+plt.xlabel('time')
+plt.ylabel('position')
 plt.savefig('particle_position.pdf')
-plt.show() 
+plt.figure(2)
+plt.plot(post_t, post_v, '-')
+plt.xlabel('time')
+plt.ylabel('velocity')
+plt.savefig('particle_velocity.pdf')
+#plt.show() 
