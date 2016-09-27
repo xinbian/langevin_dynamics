@@ -61,10 +61,15 @@ eta=cacl_random(mu, sigma, nstep)
 #read potential file
 #f = open('/home/travis/build/xinbian/langevin_dynamics/langevin_dynamics/output.d','w')
 #main loop
+def cacl_acce(damp, velocity, drag, potential, mass):
+    x=(-damp*velocity+drag-potential)/mass
+    return x
+    
 f = open('output.d','w')
 for i in range(1, nstep+1):  
     finter=np.interp(x,xpotential,fpotential)
-    a=(-dampcoeff*v+eta[i-1]-finter)/m
+    #a=(-dampcoeff*v+eta[i-1]-finter)/m
+    a=cacl_acce(dampcoeff, v, eta[i-1], finter, m)
     v=v+deltat*a
     x=x+v*deltat
     time=time+deltat
@@ -111,8 +116,11 @@ class Test_langevin(unittest.TestCase):
      def test_random_mean(self):
         self.assertTrue(np.mean(cacl_random(0,1,1000))<1)
     # test whether the  particle is confined within the potential well which should be by design
-     #def test_particle_confiment(self):
-        #self.assertTrue(np.abs(x-10)<10)
+     def test_particle_confiment(self):
+        self.assertTrue(np.abs(x-10)<10)
+    # test accerlaretion caculation
+     def test_acce(self):
+        self.assertEqual(cacl_acce(1,1,1,1,1), -1)
      
          
         
