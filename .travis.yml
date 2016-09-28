@@ -22,7 +22,8 @@ install:
 
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose dateutil pandas statsmodels coverage
-  - source activate test-environment
+  - source activate test-environmenti
+  - pip install setuptools python-coveralls nose-cov
   - python setup.py install
 
 before script:
@@ -31,7 +32,8 @@ before script:
   - sleep 3 # give xvfb some time to start
 script:
 
- - nosetests --with-cov --cover-html
+ - nosetests --with-cov --cov-config .coveragerc --cover-html
 
 # Calculate coverage
-
+after_success:
+ - coveralls --config_file .coveragerc
