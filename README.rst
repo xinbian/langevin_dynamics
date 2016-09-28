@@ -48,7 +48,7 @@ Tests
 * zero potential; intial position x=10; intial velocity=0; Temperature=10, dissipation=2; time step=0.02; total time=50
 Unit test
 ------------
-There are four unit tests.
+*  There are four unit tests.
 *  test nstep cal function:
      def test_step(self):
         self.assertEquals(cacl_nstep(1.0, 0.1), 10)
