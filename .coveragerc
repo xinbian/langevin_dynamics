@@ -1,6 +1,6 @@
 [run]
 source = langevin_dynamics
 [report]
-include = langevin_dynamics/lagevin_dynamics.py
+include = langevin_dynamics/*
 show_missing = True
    
