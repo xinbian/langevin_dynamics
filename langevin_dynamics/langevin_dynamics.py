@@ -9,6 +9,7 @@ xrange=2000
 f = open('potential.d','w')
 for i in range(1, xrange+1, 1):
   f.write("%s %10s  %10s  %10s\n" % (i, x, (2.0-2.0*(x-10)**2)**2, -16.0*(x-10)+16.0*(x-10)**3))
+ # f.write("%s %10s  %10s  %10s\n" % (i, x, (2.0-2.0*(x-10)**2)**2, 0))
   x=x+0.01
 f.close()
 index=np.arange(xrange,dtype=np.float64)
@@ -98,12 +99,12 @@ for colom in open('output.d').readlines():
 #plt.plot(post_t, post_v, 'o')
 #plt.xlabel('time')
 #plt.ylabel('position')
-#plt.savefig('particle_position.pdf')
+#plt.savefig('0potetnial_particle_position.pdf')
 #plt.figure(2)
 #plt.plot(post_t, post_v, '-')
 #plt.xlabel('time')
 #plt.ylabel('velocity')
-#plt.savefig('particle_velocity.pdf')
+#plt.savefig('0potential_particle_velocity.pdf')
 #plt.show() 
 
 

@@ -27,16 +27,30 @@ a langevin dynamics project
 
 * Free software: MIT license
 * Documentation: https://langevin-dynamics.readthedocs.io.
-
+How to use
+---------
+* modify the input file in the fold of /langevin_dynamics
+* run langevin_dymaics.py
 
 Features
 --------
 
-* The intitial position is x=10, where the potential is lowest. The potential at rim (x=0 and x=20) is designed to be very large so that the particle should not get out of the range 0<x<20 (unless the termperature is very very high).
+* The intitial position is x=10, where the potential is lowest. The potential is in the form of (2-2x(x-10)^2)^2. The potential at rim (x=0 and x=20) is designed to be very large so that the particle should not get out of the range 0<x<20 (unless the termperature is very very high).
 * Euler method is used.
 * Linear interpolation is used to get the potential in a specific position, since the potential is given be a discrete table/file.
 * The figures of position and velocity are added in the directory of the langevin_dynamics 
-* My code coverage is 100%, but the total code coverage is not 100% because of a file cli.py, gengerated by cookiecutter. I need to keep this file to pass the test.
+* My code coverage is 100% for the newest build, but the total code coverage is not 100% because of a file cli.py, gengerated by cookiecutter. The coverall seems to still show the previous build badge.
+Tests
+-----------
+
+* I add two test results. You can find it in the source code folder.
+* potential given by (2-2x(x-10)^2)^2;intial position x=10; intial velocity=0; Temperature=10, dissipation=2; time step=0.02; total time=50
+* zero potential; intial position x=10; intial velocity=0; Temperature=10, dissipation=2; time step=0.02; total time=50
+
+To do
+-------
+* add some object-oriented features
+* make a film of the particle position 
 Credits
 ---------
 
