@@ -34,6 +34,6 @@ script:
 
  - nosetests --with-cov --cov-config .coveragerc --cover-html
 
-# Calculate coverage
+#i Calculate coverage
 after_success:
  - coveralls --config_file .coveragerc
