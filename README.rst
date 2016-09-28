@@ -46,6 +46,24 @@ Tests
 * I add two test results. You can find it in the source code folder.
 * potential given by (2-2x(x-10)^2)^2;intial position x=10; intial velocity=0; Temperature=10, dissipation=2; time step=0.02; total time=50
 * zero potential; intial position x=10; intial velocity=0; Temperature=10, dissipation=2; time step=0.02; total time=50
+Unit test
+------------
+There are four unit tests.
+*  test nstep cal function:
+     def test_step(self):
+        self.assertEquals(cacl_nstep(1.0, 0.1), 10)
+* test the mean of random number is reasonable or not
+     def test_random_mean(self):
+        self.assertTrue(np.mean(cacl_random(0,1,1000))<1)
+* test whether the particle is confined within the potential well which should be by design
+     def test_particle_confiment(self):
+        self.assertTrue(np.abs(x-10)<10)
+* test acceleration caculation
+     def test_acce(self):
+        self.assertEqual(cacl_acce(1,1,1,1,1), -1)
+     
+
+
 
 To do
 -------
