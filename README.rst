@@ -19,8 +19,10 @@ Langevin-dynamics
 
 .. image:: https://coveralls.io/repos/github/xinbian/langevin_dynamics/badge.svg?branch=master
         :target: https://coveralls.io/github/xinbian/langevin_dynamics?branch=master
+     :alt: Updates
 
-
+.. image:: https://codecov.io/gh/xinbian/langevin_dynamics/branch/master/graph/badge.svg
+     :target: https://codecov.io/gh/xinbian/langevin_dynamics
 
 
 a langevin dynamics project
