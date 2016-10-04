@@ -33,3 +33,4 @@ script:
 #i Calculate coverage
 after_success:
   - coveralls --config_file .coveragerc
+  - bash <(curl -s https://codecov.io/bash)
