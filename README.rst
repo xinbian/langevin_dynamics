@@ -16,6 +16,7 @@ Langevin-dynamics
 .. image:: https://pyup.io/repos/github/xinbian/langevin_dynamics/shield.svg
      :target: https://pyup.io/repos/github/xinbian/langevin_dynamics/
      :alt: Updates
+
 .. image:: https://coveralls.io/repos/github/xinbian/langevin_dynamics/badge.svg?branch=master
         :target: https://coveralls.io/github/xinbian/langevin_dynamics?branch=master
 

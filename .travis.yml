@@ -26,14 +26,10 @@ install:
   - pip install setuptools python-coveralls nose-cov
   - python setup.py install
 
-before script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
 script:
 
- - nosetests --with-cov --cov-config .coveragerc --cover-html
+  - nosetests --with-cov --cov-config .coveragerc --cover-html
 
 #i Calculate coverage
 after_success:
- - coveralls --config_file .coveragerc
+  - coveralls --config_file .coveragerc
