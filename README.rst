@@ -3,9 +3,6 @@ Langevin-dynamics
 ===============================
 
 
-.. image:: https://img.shields.io/pypi/v/langevin_dynamics.svg
-        :target: https://pypi.python.org/pypi/langevin_dynamics
-
 .. image:: https://img.shields.io/travis/xinbian/langevin_dynamics.svg
         :target: https://travis-ci.org/xinbian/langevin_dynamics
 
@@ -21,8 +18,9 @@ Langevin-dynamics
 .. image:: https://codecov.io/gh/xinbian/langevin_dynamics/branch/master/graph/badge.svg
      :target: https://codecov.io/gh/xinbian/langevin_dynamics
 
-
-a langevin dynamics project
+A Langevin equation solver:
+* input: intial position, velocity, temperature, damping coefficient, time step, total time, and potential energy specified as a file. Potential energy file will be a text-file where each line contains an index, x, U(x), and F(x) separated by spaces.
+* output: final position, velocity and a file in the same format as above, except each line contains index, time, position, velocity. 
 
 
 * Free software: MIT license
@@ -39,7 +37,7 @@ Features
 * Euler method is used.
 * Linear interpolation is used to get the potential in a specific position, since the potential is given be a discrete table/file.
 * The figures of position and velocity are added in the directory of the langevin_dynamics 
-* My code coverage is 100% for the newest build, but the total code coverage is not 100% because of a file cli.py, gengerated by cookiecutter. The coverall seems to still show the previous build badge.
+
 Tests
 -----------
 
