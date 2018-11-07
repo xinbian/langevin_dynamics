@@ -19,6 +19,7 @@ Langevin-dynamics
      :target: https://codecov.io/gh/xinbian/langevin_dynamics
 
 A Langevin equation solver:
+
 * input: intial position, velocity, temperature, damping coefficient, time step, total time, and potential energy specified as a file. Potential energy file will be a text-file where each line contains an index, x, U(x), and F(x) separated by spaces.
 * output: final position, velocity and a file in the same format as above, except each line contains index, time, position, velocity. 
 
